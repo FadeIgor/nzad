@@ -1,0 +1,166 @@
+# Grupa 1
+
+def znajdz_max_element(lista):
+    max_element = lista[0]
+    for el in lista:
+        if el > max_element:
+            max_element = el
+    return max_element
+
+def policz_wystapienia(lista, element):
+    licznik = 0
+    for el in lista:
+        if el == element:
+            licznik += 1
+    return licznik
+
+def odwroc_kolejnosc(lista):
+    odwrocona = []
+    for el in lista:
+        odwrocona.insert(0, el)
+    return odwrocona
+
+def policz_unikalne_elementy(lista):
+    unikalne = []
+    for el in lista:
+        if el not in unikalne:
+            unikalne.append(el)
+    return len(unikalne)
+
+def sprawdz_podciag(lista, podciag):
+    for i in range(len(lista) - len(podciag) + 1):
+        if lista[i:i+len(podciag)] == podciag:
+            return True
+    return False
+
+def kwadraty_listy(lista):
+    kwadraty = []
+    for el in lista:
+        kwadraty.append(el * el)
+    return kwadraty
+
+def lista_bez_zer(lista):
+    bez_zer = []
+    for el in lista:
+        if el != 0:
+            bez_zer.append(el)
+    return bez_zer
+
+def zamien_na_przeciwnosc(lista):
+    przeciwne = []
+    for el in lista:
+        przeciwne.append(-el)
+    return przeciwne
+
+def zwroc_odwrocona_liste(lista):
+    odwrocona = []
+    for el in reversed(lista):
+        odwrocona.append(el)
+    return odwrocona
+
+def liczba_wystapien(lista):
+    wystapienia = {}
+    for el in lista:
+        if el in wystapienia:
+            wystapienia[el] += 1
+        else:
+            wystapienia[el] = 1
+    return wystapienia
+
+# Grupa 2
+
+def policz_wieksze(lista, x):
+    licznik = 0
+    for el in lista:
+        if el > x:
+            licznik += 1
+    return licznik
+
+def zamien_kolejnosc_liter(lista):
+    odwrocone = []
+    for slowo in lista:
+        nowe_slowo = ""
+        for litera in slowo:
+            nowe_slowo = litera + nowe_slowo
+        odwrocone.append(nowe_slowo)
+    return odwrocone
+
+def czy_dodatnie(lista):
+    for el in lista:
+        if el <= 0:
+            return False
+    return True
+
+def odwroc_ciag(lista):
+    odwrocone = []
+    for ciag in lista:
+        nowe_slowo = ""
+        for litera in ciag:
+            nowe_slowo = litera + nowe_slowo
+        odwrocone.append(nowe_slowo)
+    return odwrocone
+
+def indeksy_dodatnich(lista):
+    indeksy = []
+    for i in range(len(lista)):
+        if lista[i] > 0:
+            indeksy.append(i)
+    return indeksy
+
+def maks_suma_podciagu(lista):
+    max_suma = 0
+    for i in range(len(lista)):
+        suma = 0
+        for j in range(i, len(lista)):
+            suma += lista[j]
+            if suma > max_suma:
+                max_suma = suma
+    return max_suma
+
+def min_dlugosc_podciagu(lista, x):
+    n = len(lista)
+    min_dlugosc = n + 1
+    for i in range(n):
+        suma = 0
+        for j in range(i, n):
+            suma += lista[j]
+            if suma > x and (j - i + 1) < min_dlugosc:
+                min_dlugosc = j - i + 1
+    return min_dlugosc if min_dlugosc != n + 1 else 0
+
+def czy_miesci_sie_w_zakresie(lista, liczba):
+    min_element = lista[0]
+    max_element = lista[0]
+    for el in lista:
+        if el < min_element:
+            min_element = el
+        if el > max_element:
+            max_element = el
+    return min_element <= liczba <= max_element
+
+# Przykład wywołania
+lista_liczb = [3, -1, 0, 4, 3, -2, 0]
+lista_tekstowa = ["kot", "pies", "dom"]
+x = 2
+podciag = [3, -1]
+
+print("Największy element w liście:", znajdz_max_element(lista_liczb))
+print("Liczba wystąpień elementu 3 w liście:", policz_wystapienia(lista_liczb, 3))
+print("Lista w odwróconej kolejności:", odwroc_kolejnosc(lista_liczb))
+print("Liczba unikalnych elementów w liście:", policz_unikalne_elementy(lista_liczb))
+print("Czy lista zawiera podciąg [3, -1]:", sprawdz_podciag(lista_liczb, podciag))
+print("Lista z kwadratami elementów:", kwadraty_listy(lista_liczb))
+print("Lista bez zer:", lista_bez_zer(lista_liczb))
+print("Lista z przeciwnymi wartościami elementów:", zamien_na_przeciwnosc(lista_liczb))
+print("Lista w odwrotnej kolejności (inna metoda):", zwroc_odwrocona_liste(lista_liczb))
+print("Słownik wystąpień elementów w liście:", liczba_wystapien(lista_liczb))
+
+print("Liczba elementów większych od 2:", policz_wieksze(lista_liczb, x))
+print("Lista z odwróconą kolejnością liter w słowach:", zamien_kolejnosc_liter(lista_tekstowa))
+print("Czy wszystkie elementy listy są dodatnie:", czy_dodatnie(lista_liczb))
+print("Lista z odwróconymi ciągami znaków:", odwroc_ciag(lista_tekstowa))
+print("Indeksy dodatnich elementów w liście:", indeksy_dodatnich(lista_liczb))
+print("Maksymalna suma spójnego podciągu:", maks_suma_podciagu(lista_liczb))
+print("Minimalna długość podciągu o sumie większej niż 2:", min_dlugosc_podciagu(lista_liczb, x))
+print("Czy liczba 2 mieści się w zakresie wartości listy:", czy_miesci_sie_w_zakresie(lista_liczb, x))
+

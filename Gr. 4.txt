@@ -1,0 +1,152 @@
+# Grupa 1
+def sprawdz_element(lista, element):
+    for x in lista:
+        if x == element:
+            return True
+    return False
+
+def kopiuj_liste(lista):
+    nowa_lista = []
+    for x in lista:
+        nowa_lista.append(x)
+    return nowa_lista
+
+def zlicz_parzyste(lista):
+    licznik = 0
+    for x in lista:
+        if x % 2 == 0:
+            licznik += 1
+    return licznik
+
+def znajdz_najblizszy(lista, x):
+    najblizszy = lista[0]
+    for num in lista:
+        if abs(num - x) < abs(najblizszy - x):
+            najblizszy = num
+    return najblizszy
+
+def liczba_wystapien(lista):
+    slownik = {}
+    for x in lista:
+        if x in slownik:
+            slownik[x] += 1
+        else:
+            slownik[x] = 1
+    return slownik
+
+def czy_palindrom(lista):
+    i, j = 0, len(lista) - 1
+    while i < j:
+        if lista[i] != lista[j]:
+            return False
+        i += 1
+        j -= 1
+    return True
+
+def policz_dodatnie_ujemne(lista):
+    dodatnie, ujemne = 0, 0
+    for x in lista:
+        if x > 0:
+            dodatnie += 1
+        elif x < 0:
+            ujemne += 1
+    return dodatnie, ujemne
+
+def iloczyn_elementow(lista):
+    iloczyn = 1
+    for x in lista:
+        iloczyn *= x
+    return iloczyn
+
+def drugi_najwiekszy(lista):
+    maks = max(lista)
+    drugi_maks = None
+    for x in lista:
+        if x != maks:
+            if drugi_maks is None or x > drugi_maks:
+                drugi_maks = x
+    return drugi_maks
+
+def wszyscy_w_przedziale(lista, start, koniec):
+    for x in lista:
+        if x < start or x > koniec:
+            return False
+    return True
+
+# Grupa 2
+def suma_parzystych(lista):
+    suma = 0
+    for x in lista:
+        if x % 2 == 0:
+            suma += x
+    return suma
+
+def liczba_nieparzystych(lista):
+    licznik = 0
+    for x in lista:
+        if x % 2 != 0:
+            licznik += 1
+    return licznik
+
+def suma_wieksze_od_sredniej(lista):
+    suma = sum(lista)
+    if len(lista) == 0:
+        return 0
+    srednia = suma / len(lista)
+    wynik = 0
+    for x in lista:
+        if x > srednia:
+            wynik += x
+    return wynik
+
+def mniejsze_niz_x(lista, x):
+    licznik = 0
+    for num in lista:
+        if num < x:
+            licznik += 1
+    return licznik
+
+def wystepuje_wiecej_niz(lista, n, k):
+    prog = n // k
+    slownik = liczba_wystapien(lista)
+    wynik = []
+    for klucz, wartosc in slownik.items():
+        if wartosc > prog:
+            wynik.append(klucz)
+    return wynik
+
+def dwa_najwieksze(lista):
+    maks = max(lista)
+    drugi_maks = drugi_najwiekszy(lista)
+    return [maks, drugi_maks] if drugi_maks is not None else [maks]
+
+def zawiera_od_1_do_n(lista, n):
+    for i in range(1, n + 1):
+        if i not in lista:
+            return False
+    return True
+
+lista = [1, 2, 2, 3, 4, -5, -6, 7]
+element = 3
+x = 2
+n = 10
+k = 2
+
+print("Czy element istnieje:", sprawdz_element(lista, element))
+print("Kopia listy:", kopiuj_liste(lista))
+print("Liczba parzystych:", zlicz_parzyste(lista))
+print("Najbliższy element:", znajdz_najblizszy(lista, x))
+print("Liczba wystąpień:", liczba_wystapien(lista))
+print("Czy palindrom:", czy_palindrom(lista))
+print("Dodatnie i ujemne:", policz_dodatnie_ujemne(lista))
+print("Iloczyn elementów:", iloczyn_elementow(lista))
+print("Drugi największy:", drugi_najwiekszy(lista))
+print("Wszyscy w przedziale:", wszyscy_w_przedziale(lista, -6, 7))
+
+print("Suma parzystych:", suma_parzystych(lista))
+print("Liczba nieparzystych:", liczba_nieparzystych(lista))
+print("Suma większa od średniej:", suma_wieksze_od_sredniej(lista))
+print("Mniejsze niż x:", mniejsze_niz_x(lista, x))
+print("Występuje więcej niż n/k:", wystepuje_wiecej_niz(lista, n, k))
+print("Dwa największe:", dwa_najwieksze(lista))
+print("Zawiera od 1 do n:", zawiera_od_1_do_n(lista, n))

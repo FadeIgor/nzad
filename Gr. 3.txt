@@ -1,0 +1,150 @@
+def suma_listy(lista):
+    suma = 0
+    for element in lista:
+        suma += element
+    return suma
+
+def czy_palindrom(lista):
+    return lista == lista[::-1]
+
+def czy_wszystkie_takie_same(lista):
+    pierwszy = lista[0]
+    for element in lista:
+        if element != pierwszy:
+            return False
+    return True
+
+def suma_cyfr(lista):
+    suma = 0
+    for liczba in lista:
+        for cyfra in str(abs(liczba)):
+            suma += int(cyfra)
+    return suma
+
+def odwroc_liczby(lista):
+    wynik = []
+    for liczba in lista:
+        odwrocona = int(str(abs(liczba))[::-1])
+        if liczba < 0:
+            odwrocona = -odwrocona
+        wynik.append(odwrocona)
+    return wynik
+
+def elementy_wieksze(lista, wartosc):
+    wynik = []
+    for element in lista:
+        if element > wartosc:
+            wynik.append(element)
+    return wynik
+
+def suma_poprzednich(lista):
+    wynik = []
+    suma = 0
+    for element in lista:
+        suma += element
+        wynik.append(suma)
+    return wynik
+
+def ile_razy(lista, wartosc):
+    licznik = 0
+    for element in lista:
+        if element == wartosc:
+            licznik += 1
+    return licznik
+
+def przesun_lista(lista, k):
+    k = k % len(lista)
+    return lista[-k:] + lista[:-k]
+
+def splaszcz_lista(zagniezdzona_lista):
+    wynik = []
+    for podlista in zagniezdzona_lista:
+        for element in podlista:
+            wynik.append(element)
+    return wynik
+
+def najmniejszy_element(lista):
+    najmniejszy = lista[0]
+    for element in lista:
+        if element < najmniejszy:
+            najmniejszy = element
+    return najmniejszy
+
+def najdluzszy_rosnacy(lista):
+    maks_dlugosc = 1
+    aktualna_dlugosc = 1
+    for i in range(1, len(lista)):
+        if lista[i] > lista[i - 1]:
+            aktualna_dlugosc += 1
+            if aktualna_dlugosc > maks_dlugosc:
+                maks_dlugosc = aktualna_dlugosc
+        else:
+            aktualna_dlugosc = 1
+    return maks_dlugosc
+
+def bez_duplikatow(lista):
+    wynik = []
+    for element in lista:
+        if element not in wynik:
+            wynik.append(element)
+    return wynik
+
+def najwiekszy_parzysty(lista):
+    maks_parzysty = None
+    for element in lista:
+        if element % 2 == 0:
+            if maks_parzysty is None or element > maks_parzysty:
+                maks_parzysty = element
+    return maks_parzysty
+
+def czy_duplikaty(lista):
+    widziane = []
+    for element in lista:
+        if element in widziane:
+            return True
+        widziane.append(element)
+    return False
+
+def indeks_rownowagi(lista):
+    for i in range(len(lista)):
+        lewa_suma = sum(lista[:i])
+        prawa_suma = sum(lista[i+1:])
+        if lewa_suma == prawa_suma:
+            return i
+    return -1
+
+def czy_unikalne(lista):
+    for i in range(len(lista)):
+        for j in range(i + 1, len(lista)):
+            if lista[i] == lista[j]:
+                return False
+    return True
+
+def podzial_rowna_suma(lista):
+    for i in range(1, len(lista)):
+        lewa_czesc = lista[:i]
+        prawa_czesc = lista[i:]
+        if sum(lewa_czesc) == sum(prawa_czesc):
+            return lewa_czesc, prawa_czesc
+    return None, None
+
+lista = [1, 2, 3, 2, 1]
+
+print("Suma elementów w liście:", suma_listy(lista))
+print("Czy lista jest palindromem:", czy_palindrom(lista))
+print("Czy wszystkie elementy są takie same:", czy_wszystkie_takie_same(lista))
+print("Suma cyfr wszystkich liczb w liście:", suma_cyfr(lista))
+print("Odwrócone liczby:", odwroc_liczby(lista))
+print("Elementy większe od 2:", elementy_wieksze(lista, 2))
+print("Suma poprzednich elementów:", suma_poprzednich(lista))
+print("Liczba wystąpień liczby 2:", ile_razy(lista, 2))
+print("Przesunięcie o 2 pozycje:", przesun_lista(lista, 2))
+print("Spłaszczona lista:", splaszcz_lista([[1, 2], [3, 4]]))
+print("Najmniejszy element w liście:", najmniejszy_element(lista))
+print("Najdłuższy rosnący podciąg:", najdluzszy_rosnacy(lista))
+print("Lista bez duplikatów:", bez_duplikatow(lista))
+print("Największy parzysty element:", najwiekszy_parzysty(lista))
+print("Czy lista zawiera duplikaty:", czy_duplikaty(lista))
+print("Indeks równowagi:", indeks_rownowagi(lista))
+print("Czy wszystkie elementy są unikalne:", czy_unikalne(lista))
+print("Podział na dwie części o równej sumie:", podzial_rowna_suma(lista))
